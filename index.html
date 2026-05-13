@@ -227,6 +227,7 @@
         }
 
         .mini-stats {
+            display: none !important;
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 12px;
@@ -704,128 +705,117 @@
                         area</button>
                 </div>
             </div>
-
-            <div class="hero-card" id="admin">
-                <div class="login-box">
-                    <h2>Admin access</h2>
-                    <p class="muted">Use the admin key to unlock uploads, editing, and settings. For a real public
-                        deployment, this should later move to a backend sign-in system.</p>
-                    <div class="field">
-                        <label for="adminKeyInput">Admin key</label>
-                        <input id="adminKeyInput" type="password" placeholder="Enter admin key"
-                            autocomplete="current-password" />
-                    </div>
-                    <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
-                        <button class="btn btn-primary" onclick="login()">Unlock dashboard</button>
-                        <button class="btn btn-ghost" onclick="fillDemo()">Use demo key</button>
-                    </div>
-                    <div class="small-note" id="loginNote">Only admins can add or remove content in the dashboard view.
-                    </div>
-                </div>
-
-                <div class="login-box">
-                </div>
-        </section>
-
-        <main class="layout">
-            <aside class="sidebar">
-                <div class="brand-mini">
-                    <div class="brand-mark">🪄</div>
-                    <div>
-                        <strong>The Study Vault</strong><br />
-                        <span style="color:var(--muted); font-size:13px;">Admin dashboard</span>
-                    </div>
-                </div>
-                <nav class="nav">
-                    <button class="active" onclick="switchPanel('library', this)">📖 Library</button>
-                    <button onclick="switchPanel('upload', this)" id="uploadTab" class="hidden">⬆️ Upload</button>
-                    <button onclick="switchPanel('settings', this)" id="settingsTab" class="hidden">⚙️ Edit
-                        text</button>
-                    <button class="danger" onclick="clearAll()" id="clearBtn" style="display:none;">🗑️ Clear all demo
-                        data</button>
-                </nav>
-                <p class="small-note">Public viewers can browse the library. Admin mode unlocks uploads and editing
-                    inside this file.</p>
-            </aside>
-
-            <div class="content">
-                <section class="section" id="library">
-                    <div class="section-header">
-                        <div>
-                            <h2>Library</h2>
-                            <p class="muted">Search, filter, and open files from one place.</p>
-                        </div>
-                        <div class="filters" id="filterBar"></div>
-                    </div>
-                    <div class="field" style="margin-top:0;">
-                        <label for="searchInput">Search</label>
-                        <input id="searchInput" type="text" placeholder="Search by title, subject, or tags..."
-                            oninput="renderLibrary()" />
-                    </div>
-                    <div style="height:14px;"></div>
-                    <div class="grid" id="libraryGrid"></div>
-                    <div class="small-note hidden" id="emptyState">No items yet. Log in as admin to add notes, images,
-                        or documents.</div>
-                </section>
-
-                <section class="section hidden" id="uploadPanel">
-                    <div class="section-header">
-                        <div>
-                            <h2>Upload content</h2>
-                            <p class="muted">Add one or more files. Images, PDFs, and text notes are supported in this
-                                demo.</p>
-                        </div>
-                    </div>
-                    <div class="upload-wrap">
-                        <div class="dropzone" onclick="document.getElementById('fileInput').click()">
-                            <div>
-                                <div style="font-size:42px;">📁</div>
-                                <strong>Drag &amp; drop files here</strong><br />
-                                <span>or click to browse<br />Images, PDFs, TXT, DOCX</span>
-                            </div>
-                        </div>
-                        <div>
-                            <input id="fileInput" type="file" multiple accept="image/*,application/pdf,.txt,.doc,.docx"
-                                class="hidden" onchange="queueFiles(this.files)" />
-                            <div id="uploadForms" class="grid-1"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section hidden" id="settingsPanel">
-                    <div class="section-header">
-                        <div>
-                            <h2>Edit text</h2>
-                            <p class="muted">Update the public copy without changing the layout.</p>
-                        </div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="field">
-                            <label>Site title</label>
-                            <input id="editSiteTitle" type="text" />
-                        </div>
-                        <div class="field">
-                            <label>Tagline</label>
-                            <input id="editSiteTag" type="text" />
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label>Hero title</label>
-                        <input id="editHeroTitle" type="text" />
-                    </div>
-                    <div class="field">
-                        <label>Hero subtitle</label>
-                        <textarea id="editHeroSubtitle"></textarea>
-                    </div>
-                    <button class="btn btn-primary" onclick="saveTextEdits()">Save text edits</button>
-                </section>
+            <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+                <button class="btn btn-primary" onclick="login()">Unlock dashboard</button>
+                <button class="btn btn-ghost" onclick="fillDemo()">Use demo key</button>
             </div>
-        </main>
+            <div class="small-note" id="loginNote">Only admins can add or remove content in the dashboard view.
+            </div>
+    </div>
 
-        <footer class="footer">
-            This is a polished front-end upgrade. For a truly secure public website with private uploads, the admin
-            login and file storage should move to a backend service.
-        </footer>
+    <div class="login-box">
+    </div>
+    </section>
+
+    <main class="layout">
+        <aside class="sidebar">
+            <div class="brand-mini">
+                <div class="brand-mark">🪄</div>
+                <div>
+                    <strong>The Study Vault</strong><br />
+                    <span style="color:var(--muted); font-size:13px;">Admin dashboard</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <button class="active" onclick="switchPanel('library', this)">📖 Library</button>
+                <button onclick="switchPanel('upload', this)" id="uploadTab" class="hidden">⬆️ Upload</button>
+                <button onclick="switchPanel('settings', this)" id="settingsTab" class="hidden">⚙️ Edit
+                    text</button>
+                <button class="danger" onclick="clearAll()" id="clearBtn" style="display:none;">🗑️ Clear all demo
+                    data</button>
+            </nav>
+            <p class="small-note">Public viewers can browse the library. Admin mode unlocks uploads and editing
+                inside this file.</p>
+        </aside>
+
+        <div class="content">
+            <section class="section" id="library">
+                <div class="section-header">
+                    <div>
+                        <h2>Library</h2>
+                        <p class="muted">Search, filter, and open files from one place.</p>
+                    </div>
+                    <div class="filters" id="filterBar"></div>
+                </div>
+                <div class="field" style="margin-top:0;">
+                    <label for="searchInput">Search</label>
+                    <input id="searchInput" type="text" placeholder="Search by title, subject, or tags..."
+                        oninput="renderLibrary()" />
+                </div>
+                <div style="height:14px;"></div>
+                <div class="grid" id="libraryGrid"></div>
+                <div class="small-note hidden" id="emptyState">No items yet. Log in as admin to add notes, images,
+                    or documents.</div>
+            </section>
+
+            <section class="section hidden" id="uploadPanel">
+                <div class="section-header">
+                    <div>
+                        <h2>Upload content</h2>
+                        <p class="muted">Add one or more files. Images, PDFs, and text notes are supported in this
+                            demo.</p>
+                    </div>
+                </div>
+                <div class="upload-wrap">
+                    <div class="dropzone" onclick="document.getElementById('fileInput').click()">
+                        <div>
+                            <div style="font-size:42px;">📁</div>
+                            <strong>Drag &amp; drop files here</strong><br />
+                            <span>or click to browse<br />Images, PDFs, TXT, DOCX</span>
+                        </div>
+                    </div>
+                    <div>
+                        <input id="fileInput" type="file" multiple accept="image/*,application/pdf,.txt,.doc,.docx"
+                            class="hidden" onchange="queueFiles(this.files)" />
+                        <div id="uploadForms" class="grid-1"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section hidden" id="settingsPanel">
+                <div class="section-header">
+                    <div>
+                        <h2>Edit text</h2>
+                        <p class="muted">Update the public copy without changing the layout.</p>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="field">
+                        <label>Site title</label>
+                        <input id="editSiteTitle" type="text" />
+                    </div>
+                    <div class="field">
+                        <label>Tagline</label>
+                        <input id="editSiteTag" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Hero title</label>
+                    <input id="editHeroTitle" type="text" />
+                </div>
+                <div class="field">
+                    <label>Hero subtitle</label>
+                    <textarea id="editHeroSubtitle"></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="saveTextEdits()">Save text edits</button>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        This is a polished front-end upgrade. For a truly secure public website with private uploads, the admin
+        login and file storage should move to a backend service.
+    </footer>
     </div>
 
     <div class="modal-backdrop" id="loginModal" style="display:none;">
